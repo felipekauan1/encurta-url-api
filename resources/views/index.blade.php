@@ -117,7 +117,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 12px;
         }
 
         .result-link a {
