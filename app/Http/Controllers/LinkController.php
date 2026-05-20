@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use Illuminate\Support\Str;
+use Uri\WhatWg\UrlValidationError;
 
 class LinkController extends Controller
 {
@@ -41,7 +42,7 @@ class LinkController extends Controller
 
     public function redirect(string $code)
     {
-        $link = Link::where('short_code', $code)->first();
+        $link = Link::where('short_code', $code)->firstOrFail();
 
         $original_url = $link->original_url;
 
