@@ -11,9 +11,13 @@ class LinkController extends Controller
 {
     public function store(StoreLinkRequest $request)
     {
+        do {
+            $code = Str::random(5);
+        } while (Link::where('short_code', $code)->exists());
+
         $link = Link::create([
             'original_url' => $request->input('original_url'),
-            'short_code' => Str::random(5),
+            'short_code' => $code,
         ]);
 
         return response()->json([
